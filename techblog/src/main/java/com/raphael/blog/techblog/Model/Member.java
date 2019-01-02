@@ -18,7 +18,7 @@ public class Member {
 
     @Column(name = "user_id")
     private String userId;
-    @JsonIgnore
+//    @JsonIgnore
     @Column(name = "password")
     private String password;
 
