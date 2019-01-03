@@ -21,6 +21,16 @@ public class Board {
     @Column(name = "contents")
     private String contents;
 
+    public Board() {
+
+    }
+
+    public Board(String tag, String title, String contents) {
+        this.tag = tag;
+        this.title = title;
+        this.contents = contents;
+    }
+
 
 //    @Temporal(TemporalType.TIMESTAMP)
 //    private Date createdTimeStamp;

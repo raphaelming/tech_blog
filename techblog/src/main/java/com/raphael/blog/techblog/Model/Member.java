@@ -1,7 +1,6 @@
 package com.raphael.blog.techblog.Model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,7 +17,6 @@ public class Member {
 
     @Column(name = "user_id")
     private String userId;
-//    @JsonIgnore
     @Column(name = "password")
     private String password;
 
@@ -30,5 +28,22 @@ public class Member {
     private String email;
     @Column(name = "introduce")
     private String introduce;
+
+
+    public Member() {
+
+    }
+
+    public Member(String userId, String password, String name, String nickname, String email, String introduce) {
+        this.userId = userId;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+        this.email = email;
+        this.introduce = introduce;
+    }
+
+
+
 
 }
