@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
-@Slf4j
+//@Slf4j
 public class MemberController {
     private final MemberRepository memberRepository;
 

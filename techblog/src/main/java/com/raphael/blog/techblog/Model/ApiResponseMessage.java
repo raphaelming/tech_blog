@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 @ToString
 public class ApiResponseMessage {
     private HttpStatus status;
-    private int result_code;
+    private Integer result_code;
     private String message;
     private String debugMessage;
     public ApiResponseMessage()
@@ -20,19 +20,19 @@ public class ApiResponseMessage {
         this.status = status;
     }
 
-    public ApiResponseMessage(HttpStatus status, int result_code)
+    public ApiResponseMessage(HttpStatus status, Integer result_code)
     {
         this.status = status;
         this.result_code = result_code;
     }
 
-    public ApiResponseMessage(HttpStatus status, int result_code, Throwable ex){
+    public ApiResponseMessage(HttpStatus status, Integer result_code, Throwable ex){
         this.status = status;
         this.result_code = result_code;
         this.debugMessage = ex.getLocalizedMessage();
     }
 
-    public ApiResponseMessage(HttpStatus status, String message, int result_code, Throwable ex){
+    public ApiResponseMessage(HttpStatus status, String message, Integer result_code, Throwable ex){
         this.status = status;
         this.message = message;
         this.result_code = result_code;
