@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @ToString
@@ -17,6 +18,12 @@ public class Comment {
     @Column(name = "contents")
     private String contents;
 
+    private LocalDateTime regDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
+
 
     public Comment() {
 
@@ -24,5 +31,10 @@ public class Comment {
 
     public Comment(String contents) {
         this.contents = contents;
+    }
+
+    public Comment(String contents, Board board) {
+        this.contents = contents;
+        this.board = board;
     }
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @RequestMapping("/comment")
 @RequiredArgsConstructor
 public class CommentController {
-    private final CommentRepository commentRepository;
 
+    private final CommentRepository commentRepository;
 
 
     @GetMapping("/{id}")
@@ -33,7 +33,7 @@ public class CommentController {
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Comment> list() {
         return commentRepository.findAll();
     }

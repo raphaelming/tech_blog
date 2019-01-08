@@ -34,7 +34,7 @@ public class MemberController {
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Member> list() {
         return memberRepository.findAll();
     }

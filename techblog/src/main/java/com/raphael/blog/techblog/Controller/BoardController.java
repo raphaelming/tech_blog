@@ -3,11 +3,14 @@ package com.raphael.blog.techblog.Controller;
 
 import com.raphael.blog.techblog.Model.ApiResponseMessage;
 import com.raphael.blog.techblog.Model.Board;
+import com.raphael.blog.techblog.Model.ExceptionPojo;
 import com.raphael.blog.techblog.Repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -22,29 +25,22 @@ public class BoardController {
     }
 
     @PostMapping
-    public ApiResponseMessage create(@RequestBody Board board) {
-        try {
+    public ResponseEntity<ExceptionPojo> create(@RequestBody Board board) {
+            board.setRegDate(LocalDateTime.now());
             boardRepository.save(board);
-            return new ApiResponseMessage(HttpStatus.OK, 200);
-        } catch (Exception e) {
-            return new ApiResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, 500);
-        }
+            return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Board> list() {
         return boardRepository.findAll();
     }
 
     @PutMapping
-    public ApiResponseMessage insert(@RequestBody Board board) {
+    public ResponseEntity<ExceptionPojo> insert(@RequestBody Board board) {
         //TODO 예외처리 및 구조.. 수정할 것
-        try {
             boardRepository.save(board);
-            return new ApiResponseMessage(HttpStatus.OK, 200);
-        } catch (Exception e) {
-            return new ApiResponseMessage(HttpStatus.INTERNAL_SERVER_ERROR, 500);
-        }
+            return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
