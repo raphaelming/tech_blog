@@ -18,7 +18,7 @@ public class TagController {
     private final TagService tagService;
 
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable Integer id) {
         Tag tag = tagService.get(id);
         return new ResponseEntity(tag, HttpStatus.OK);
@@ -42,7 +42,7 @@ public class TagController {
         return new ResponseEntity<>(new ExceptionPojo(201, "Updated", "success"), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ExceptionPojo> delete(@PathVariable Integer id) {
         tagService.delete(id);
         return new ResponseEntity<>(new ExceptionPojo(200, "OK", "success"), HttpStatus.OK);
