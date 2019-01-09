@@ -25,7 +25,7 @@ public class BoardJSONTests {
 
     @Before
     public void setup() throws Exception {
-        Board board = new Board("test", "test", "test");
+        Board board = new Board("test", "test");
         board.setId(1);
         this.board = board;
     }
@@ -33,8 +33,8 @@ public class BoardJSONTests {
 
     @Test
     public void deserializeJson() throws Exception {
-        String content = "{\"tag\": \"test\", \"title\": \"test\", \"contents\": \"test\"}";
-        assertThat(this.json.parse(content)).isEqualTo(new Board("test", "test", "test"));
+        String content = "{\"title\": \"test\", \"contents\": \"test\"}";
+        assertThat(this.json.parse(content)).isEqualTo(new Board( "test", "test"));
         assertThat(this.json.parseObject(content).getTitle()).isEqualTo("test");
     }
 
@@ -44,7 +44,6 @@ public class BoardJSONTests {
         assertThat(this.json.write(board)).isEqualToJson("/com/raphael/blog/techblog/board.json");
         assertThat(this.json.write(board)).hasJsonPathStringValue("@.title");
         assertJsonPropertyEquals("@.title", "test");
-        assertJsonPropertyEquals("@.tag", "test");
         assertJsonPropertyEquals("@.contents", "test");
     }
 

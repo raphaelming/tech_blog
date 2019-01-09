@@ -1,6 +1,7 @@
 package com.raphael.blog.techblog.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,9 +19,9 @@ public class Tag {
 
     private String name;
 
-    private LocalDateTime regDate;
 
     @OneToMany(mappedBy = "tag", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Board> boards = new ArrayList<>();
 
 

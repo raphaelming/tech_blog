@@ -2,9 +2,12 @@ package com.raphael.blog.techblog.Controller;
 
 
 import com.raphael.blog.techblog.Model.ApiResponseMessage;
+import com.raphael.blog.techblog.Model.Board;
 import com.raphael.blog.techblog.Model.Comment;
 import com.raphael.blog.techblog.Model.ExceptionPojo;
 import com.raphael.blog.techblog.Repository.CommentRepository;
+import com.raphael.blog.techblog.Service.BoardService;
+import com.raphael.blog.techblog.Service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,44 +17,42 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/comments")
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final CommentRepository commentRepository;
+    private final CommentService commentService;
 
 
     @GetMapping("/{id}")
-    public Comment get(@PathVariable Integer id) {
-        return commentRepository.findById(id).get();
+    public ResponseEntity get(@PathVariable Integer id) {
+        Comment comment = commentService.get(id);
+        return new ResponseEntity(comment, HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<ExceptionPojo> create(@RequestBody Comment comment) {
-        comment.setRegDate(LocalDateTime.now());
-        commentRepository.save(comment);
-        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
+        commentService.create(comment);
+        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.CREATED);
     }
 
-    @GetMapping("")
-    public List<Comment> list() {
-        return commentRepository.findAll();
+    @GetMapping
+    public List<Comment> comments() {
+        return commentService.list();
     }
 
 
 
     @PutMapping
     public ResponseEntity<ExceptionPojo> insert(@RequestBody Comment comment) {
-        //TODO 예외처리 및 구조.. 수정할 것
-        comment.setRegDate(LocalDateTime.now());
-        commentRepository.save(comment);
-        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
+        commentService.insert(comment);
+        return new ResponseEntity<>(new ExceptionPojo(201, "Updated", "success"),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        //TODO 예외처리 및 구조.. 수정할 것
-        commentRepository.delete(commentRepository.findById(id).get());
+    public ResponseEntity<ExceptionPojo> delete(@PathVariable Integer id) {
+        commentService.delete(id);
+        return new ResponseEntity<>(new ExceptionPojo(200, "OK", "success"),HttpStatus.OK);
     }
 
 

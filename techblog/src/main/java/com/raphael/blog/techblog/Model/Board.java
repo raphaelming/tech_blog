@@ -1,11 +1,16 @@
 package com.raphael.blog.techblog.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,14 +26,23 @@ public class Board {
     @Column(name = "contents")
     private String contents;
 
-    private LocalDateTime regDate;
+    @CreationTimestamp
+    private LocalDateTime createdTimeAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedTimeAt;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TAG_ID")
+    @JsonBackReference
     private Tag tag;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Comment> comments;
+
+
 
     public Board() {
 
@@ -44,9 +58,5 @@ public class Board {
     }
 
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date createdTimeStamp;
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date updatedTimeStamp;
 
 }

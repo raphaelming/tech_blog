@@ -5,6 +5,7 @@ import com.raphael.blog.techblog.Model.ApiResponseMessage;
 import com.raphael.blog.techblog.Model.Board;
 import com.raphael.blog.techblog.Model.ExceptionPojo;
 import com.raphael.blog.techblog.Repository.BoardRepository;
+import com.raphael.blog.techblog.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,41 +15,38 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/boards")
 @RequiredArgsConstructor
 public class BoardController {
-    private final BoardRepository boardRepository;
+    private final BoardService boardService;
 
     @GetMapping("/{id}")
-    public Board get(@PathVariable Integer id) {
-            return boardRepository.findById(id).get();
+    public ResponseEntity get(@PathVariable Integer id) {
+        Board board = boardService.get(id);
+        return new ResponseEntity(board, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<ExceptionPojo> create(@RequestBody Board board) {
-
-        board.setRegDate(LocalDateTime.now());
-        boardRepository.save(board);
-        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
+        boardService.create(board);
+        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.CREATED);
     }
 
     @GetMapping("")
-    public List<Board> list() {
-        return boardRepository.findAll();
+    public List<Board> boards() {
+        return boardService.list();
     }
 
     @PutMapping
     public ResponseEntity<ExceptionPojo> insert(@RequestBody Board board) {
-        //TODO 예외처리 및 구조.. 수정할 것
-        board.setRegDate(LocalDateTime.now());
-        boardRepository.save(board);
-        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
+        boardService.insert(board);
+        return new ResponseEntity<>(new ExceptionPojo(201, "Updated", "success"),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        //TODO 예외처리 및 구조.. 수정할 것
-        boardRepository.delete(boardRepository.findById(id).get());
+    public ResponseEntity<ExceptionPojo> delete(@PathVariable Integer id) {
+        boardService.delete(id);
+        return new ResponseEntity<>(new ExceptionPojo(200, "OK", "success"), HttpStatus.OK);
     }
 
 
