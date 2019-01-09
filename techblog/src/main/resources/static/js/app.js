@@ -1,5 +1,5 @@
 console.log('connect');
-var url = 'http://localhost:8080/board/list';
+var url = 'http://localhost:8080/boards';
 var list = document.getElementById('list');
 var button = document.getElementById('select');
 var str = '';

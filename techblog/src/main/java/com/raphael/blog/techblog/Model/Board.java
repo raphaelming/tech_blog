@@ -1,6 +1,8 @@
 package com.raphael.blog.techblog.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,10 +35,14 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TAG_ID")
+    @JsonBackReference
     private Tag tag;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Comment> comments;
+
+
 
     public Board() {
 

@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/boards")
 @RequiredArgsConstructor
 public class BoardController {
-    private final BoardRepository boardRepository;
     private final BoardService boardService;
 
     @GetMapping("/{id}")
@@ -46,7 +45,6 @@ public class BoardController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ExceptionPojo> delete(@PathVariable Integer id) {
-        //TODO 예외처리 및 구조.. 수정할 것
         boardService.delete(id);
         return new ResponseEntity<>(new ExceptionPojo(200, "OK", "success"), HttpStatus.OK);
     }

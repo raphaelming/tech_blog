@@ -1,8 +1,11 @@
 package com.raphael.blog.techblog.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,10 +21,16 @@ public class Comment {
     @Column(name = "contents")
     private String contents;
 
-    private LocalDateTime regDate;
+
+    @CreationTimestamp
+    private LocalDateTime createdTimeAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedTimeAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
+    @JsonBackReference
     private Board board;
 
 
@@ -31,6 +40,10 @@ public class Comment {
 
     public Comment(String contents) {
         this.contents = contents;
+    }
+
+    public Comment(Board board) {
+        this.board = board;
     }
 
     public Comment(String contents, Board board) {
