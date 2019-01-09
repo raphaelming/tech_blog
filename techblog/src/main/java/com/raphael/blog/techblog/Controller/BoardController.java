@@ -26,9 +26,10 @@ public class BoardController {
 
     @PostMapping
     public ResponseEntity<ExceptionPojo> create(@RequestBody Board board) {
-            board.setRegDate(LocalDateTime.now());
-            boardRepository.save(board);
-            return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
+
+        board.setRegDate(LocalDateTime.now());
+        boardRepository.save(board);
+        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
     }
 
     @GetMapping("")
@@ -39,8 +40,9 @@ public class BoardController {
     @PutMapping
     public ResponseEntity<ExceptionPojo> insert(@RequestBody Board board) {
         //TODO 예외처리 및 구조.. 수정할 것
-            boardRepository.save(board);
-            return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
+        board.setRegDate(LocalDateTime.now());
+        boardRepository.save(board);
+        return new ResponseEntity<>(new ExceptionPojo(201, "Created", "success"),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

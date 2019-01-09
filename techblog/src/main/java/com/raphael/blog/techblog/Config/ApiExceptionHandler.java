@@ -4,13 +4,10 @@ package com.raphael.blog.techblog.Config;
 import com.raphael.blog.techblog.Model.ExceptionPojo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.EmptyStackException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
