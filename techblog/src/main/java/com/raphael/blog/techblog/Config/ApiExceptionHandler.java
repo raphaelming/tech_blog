@@ -5,6 +5,8 @@ import com.raphael.blog.techblog.Model.ExceptionPojo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
+import org.springframework.security.oauth2.common.exceptions.UnauthorizedClientException;
+import org.springframework.security.oauth2.common.exceptions.UnauthorizedUserException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ApiExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiExceptionHandler.class);
+
 
 
     @ExceptionHandler(Exception.class)
