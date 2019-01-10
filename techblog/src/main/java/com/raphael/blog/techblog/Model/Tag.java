@@ -3,6 +3,7 @@ package com.raphael.blog.techblog.Model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 @Data
+@ToString
 @Entity(name = "tag")
 public class Tag {
     @Id
@@ -23,6 +25,19 @@ public class Tag {
     @OneToMany(mappedBy = "tag", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Board> boards = new ArrayList<>();
+
+    public Tag() {
+
+    }
+
+    public Tag(Integer id) {
+        this.id = id;
+    }
+
+    public Tag(String name) {
+        this.name = name;
+    }
+
 
 
 }

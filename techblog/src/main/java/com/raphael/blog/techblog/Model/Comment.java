@@ -23,13 +23,14 @@ public class Comment {
 
 
     @CreationTimestamp
+    @Column(name = "created_time_at", updatable = false)
     private LocalDateTime createdTimeAt;
 
     @UpdateTimestamp
     private LocalDateTime updatedTimeAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "board_id", updatable = false)
     @JsonBackReference
     private Board board;
 

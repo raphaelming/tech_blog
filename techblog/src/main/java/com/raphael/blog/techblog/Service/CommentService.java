@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(timeout = 20)
@@ -33,7 +31,6 @@ public class CommentService {
 
     public void insert(Comment comment) {
         if (commentRepository.existsById(comment.getId())) {
-            comment.setCreatedTimeAt(commentRepository.findById(comment.getId()).get().getCreatedTimeAt());
             commentRepository.save(comment);
         }
     }

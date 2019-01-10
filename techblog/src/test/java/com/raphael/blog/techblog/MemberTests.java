@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MemberTests {
-    public static final String PATH = "/member";
+    public static final String PATH = "/members";
 
     @Autowired
     private TestRestTemplate testRestTemplate;
