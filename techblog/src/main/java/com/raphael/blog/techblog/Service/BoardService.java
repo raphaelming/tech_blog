@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(timeout = 20)
 @RequiredArgsConstructor
 public class BoardService {
     private static final Logger logger = LoggerFactory.getLogger(BoardService.class);
@@ -33,8 +33,6 @@ public class BoardService {
 
     public void insert(Board board) {
         if(boardRepository.existsById(board.getId())) {
-            logger.info(String.valueOf(boardRepository.findById(board.getId()).get().getCreatedTimeAt()));
-            board.setCreatedTimeAt(boardRepository.findById(board.getId()).get().getCreatedTimeAt());
             boardRepository.save(board);
         }
     }

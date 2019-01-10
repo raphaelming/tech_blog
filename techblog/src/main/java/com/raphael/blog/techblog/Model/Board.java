@@ -9,8 +9,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,6 +25,7 @@ public class Board {
     private String contents;
 
     @CreationTimestamp
+    @Column(name = "created_time_at", updatable = false)
     private LocalDateTime createdTimeAt;
 
     @UpdateTimestamp
@@ -34,7 +33,7 @@ public class Board {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TAG_ID")
+    @JoinColumn(name = "tag_id")
     @JsonBackReference
     private Tag tag;
 
@@ -52,8 +51,18 @@ public class Board {
         this.id = id;
     }
 
+    public Board(Tag tag) {
+        this.tag = tag;
+    }
+
     public Board(String title, String contents) {
         this.title = title;
+        this.contents = contents;
+    }
+
+    public Board(String title, Tag tag, String contents) {
+        this.title = title;
+        this.tag = tag;
         this.contents = contents;
     }
 
