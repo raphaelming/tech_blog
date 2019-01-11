@@ -21,8 +21,8 @@ public class Member implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
     @Column(name = "nickname")
     private String nickname;
     @Column(name = "email")
@@ -35,10 +35,10 @@ public class Member implements Serializable {
 
     }
 
-    public Member(String userId, String password, String name, String nickname, String email, String introduce) {
+    public Member(String userId, String password, String username, String nickname, String email, String introduce) {
         this.userId = userId;
         this.password = password;
-        this.name = name;
+        this.username = username;
         this.nickname = nickname;
         this.email = email;
         this.introduce = introduce;

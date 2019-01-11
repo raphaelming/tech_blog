@@ -1,15 +1,13 @@
 package com.raphael.blog.techblog.Controller;
 
 
+import com.raphael.blog.techblog.Model.ExceptionPojo;
 import com.raphael.blog.techblog.Model.Member;
 import com.raphael.blog.techblog.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +26,12 @@ public class MemberController {
     public ResponseEntity get(@PathVariable Integer id) {
         Member member = memberService.get(id);
         return new ResponseEntity(member, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ExceptionPojo> create(@RequestBody Member member) {
+        memberService.create(member);
+        return new ResponseEntity<>(new ExceptionPojo(201, "created", "success"), HttpStatus.CREATED);
     }
 
 }

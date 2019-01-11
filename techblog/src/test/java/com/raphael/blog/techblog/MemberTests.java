@@ -37,7 +37,7 @@ public class MemberTests {
         Member member = new Member();
         member.setUserId(userId);
         member.setPassword(password);
-        member.setName(name);
+        member.setUsername(name);
         member.setNickname(nickname);
         member.setEmail(email);
         member.setIntroduce(introduce);
@@ -48,7 +48,7 @@ public class MemberTests {
         Member resultMember = testRestTemplate.getForObject(PATH + "/" + createdMember.getId(), Member.class);
         assertThat(resultMember.getUserId(), is(userId));
         assertThat(resultMember.getPassword(), is(password));
-        assertThat(resultMember.getName(), is(name));
+        assertThat(resultMember.getUsername(), is(name));
         assertThat(resultMember.getNickname(), is(nickname));
         assertThat(resultMember.getEmail(), is(email));
         assertThat(resultMember.getIntroduce(), is(introduce));
@@ -70,7 +70,7 @@ public class MemberTests {
         assertThat(member.getId(), is(id));
         assertThat(member.getUserId(), is(userId));
         assertThat(member.getPassword(), is(password));
-        assertThat(member.getName(), is(name));
+        assertThat(member.getUsername(), is(name));
         assertThat(member.getNickname(), is(nickname));
         assertThat(member.getEmail(), is(email));
         assertThat(member.getIntroduce(), is(introduce));
