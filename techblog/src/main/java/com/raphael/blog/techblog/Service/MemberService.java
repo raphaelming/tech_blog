@@ -23,4 +23,8 @@ public class MemberService {
     public Member get(Integer id) {
         return memberRepository.findById(id).get();
     }
+
+    public void create(Member member) {
+        memberRepository.save(member);
+    }
 }
