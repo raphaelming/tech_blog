@@ -17,7 +17,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 
 import javax.sql.DataSource;
 
-@EnableResourceServer
+//@EnableResourceServer
+@EnableAuthorizationServer
 @Configuration
 public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServerConfigurerAdapter {
 
@@ -35,9 +36,9 @@ public class AuthorizationServerConfigurerAdapterImpl extends AuthorizationServe
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("foo")
-                .secret("bar")
+                .secret("{noop}bar")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .scopes("read");
+                .scopes("read", "write");
 //        clients.jdbc(dataSource);
     }
 

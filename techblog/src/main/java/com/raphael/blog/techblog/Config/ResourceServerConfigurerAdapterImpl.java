@@ -15,8 +15,8 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
 
-//@EnableResourceServer
-@EnableAuthorizationServer
+@EnableResourceServer
+//@EnableAuthorizationServer
 @Configuration
 public class ResourceServerConfigurerAdapterImpl extends ResourceServerConfigurerAdapter {
 
