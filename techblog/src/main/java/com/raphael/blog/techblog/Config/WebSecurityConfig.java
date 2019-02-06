@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //    @Override
@@ -18,15 +18,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        web.ignoring().antMatchers("/**");
 //    }
 //
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/**").permitAll();
-//        http.headers().frameOptions().disable();
-//
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/**").permitAll();
+        http.headers().frameOptions().disable();
 
-    @Bean
-    @Override public AuthenticationManager authenticationManagerBean() throws Exception { return super.authenticationManagerBean(); }
+    }
+
+//    @Bean
+//    @Override public AuthenticationManager authenticationManagerBean() throws Exception { return super.authenticationManagerBean(); }
 
 }
