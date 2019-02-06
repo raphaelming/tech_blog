@@ -89,7 +89,7 @@ public class MemberOAuth2Tests {
     private JSONObject setMember() throws JSONException {
         JSONObject member = new JSONObject();
         member.put("username", "test");
-        member.put("id", 1);
+        member.put("id", 14);
         return member;
     }
 

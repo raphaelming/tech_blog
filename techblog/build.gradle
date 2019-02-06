@@ -33,8 +33,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-web-services')
     compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.1.RELEASE'
-//    compile('org.springframework.session:spring-session-jdbc')
+    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.1.2.RELEASE'
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
