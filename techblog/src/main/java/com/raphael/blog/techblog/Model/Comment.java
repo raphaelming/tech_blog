@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
-@ToString
 @Entity(name = "comment")
 public class Comment {
     @Id

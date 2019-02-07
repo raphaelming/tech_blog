@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
-@ToString
 @Entity(name = "member")
 public class Member implements Serializable {
 

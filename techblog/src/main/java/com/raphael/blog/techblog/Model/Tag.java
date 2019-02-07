@@ -12,7 +12,6 @@ import java.util.List;
 
 
 @Data
-@ToString
 @Entity(name = "tag")
 public class Tag {
     @Id
