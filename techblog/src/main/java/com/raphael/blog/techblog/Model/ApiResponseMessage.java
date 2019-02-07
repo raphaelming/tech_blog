@@ -5,7 +5,6 @@ import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 @Data
-@ToString
 public class ApiResponseMessage {
     private HttpStatus status;
     private Integer result_code;
