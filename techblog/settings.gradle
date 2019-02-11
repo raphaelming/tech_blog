@@ -1,1 +1,6 @@
 rootProject.name = 'techblog'
+include 'techblog-api'
+include 'techblog-common'
+include 'techblog-web'
+include 'techblog-security'
+
