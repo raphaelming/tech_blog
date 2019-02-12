@@ -12,19 +12,8 @@ buildscript {
 
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
-group = 'com.raphael.blog'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-repositories {
-    mavenCentral()
-}
-
-subprojects {
+allprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'org.springframework.boot'
@@ -43,7 +32,7 @@ subprojects {
                 it.mkdirs()
             }
         }
-        
+
         sourceSets*.resources.srcDirs*.each {
             if ( !it.exists() ) {
                 it.mkdirs()
@@ -52,8 +41,10 @@ subprojects {
     }
     
     dependencies {
+        runtime('org.springframework.boot:spring-boot-devtools')
+        compile('org.springframework.boot:spring-boot-starter-actuator')
         compileOnly('org.projectlombok:lombok')
-
+        compile('org.springframework.boot:spring-boot-starter-web')
     }
 }
 
@@ -62,11 +53,6 @@ subprojects {
 
 
 
-dependencies {
-    compile project(':techblog-common')
-    compile project(':techblog-api')
-    compile project(':techblog-web')
-}
 
 
 project(':techblog-api') {
