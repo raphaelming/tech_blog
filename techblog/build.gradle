@@ -45,13 +45,13 @@ allprojects {
         compile('org.springframework.boot:spring-boot-starter-actuator')
         compileOnly('org.projectlombok:lombok')
         compile('org.springframework.boot:spring-boot-starter-web')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
     }
 }
 
-
-
-
-
+dependencies {
+    compile project(':techblog-web')
+}
 
 
 
@@ -64,6 +64,8 @@ project(':techblog-api') {
 project(':techblog-web') {
     dependencies {
         compile project(':techblog-common')
+        compile project(':techblog-api')
+        compile project(':techblog-security')
     }
 }
 

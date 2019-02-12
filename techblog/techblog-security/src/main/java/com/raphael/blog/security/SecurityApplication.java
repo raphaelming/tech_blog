@@ -1,13 +1,13 @@
-package com.raphael.blog.api;
+package com.raphael.blog.security;
 
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiApplication {
+public class SecurityApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiApplication.class, args);
+        SpringApplication.run(SecurityApplication.class, args);
     }
 }
