@@ -1,8 +1,8 @@
 package com.raphael.blog.api.Service;
 
+
 import com.raphael.blog.common.Domain.Board;
 import com.raphael.blog.common.Repository.BoardRepository;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,4 @@ public class BoardService {
     public void delete(Integer id) {
         boardRepository.delete(boardRepository.findById(id).get());
     }
-
-
 }
